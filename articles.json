@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Getting Started with Document360",
+    "category": "Onboarding",
+    "content": "Welcome to Mini Document360! This knowledge base platform allows teams to create, organize, and share internal or customer-facing documentation with ease."
+  },
+  {
+    "title": "Best Practices for Technical Writing",
+    "category": "Guidelines",
+    "content": "Keep your documentation concise, use clear headings, provide code samples when necessary, and ensure articles are categorized logically for easy discovery."
+  },
+  {
+    "title": "API Documentation Overview",
+    "category": "API",
+    "content": "Document RESTful endpoints clearly with HTTP methods, request parameters, sample request bodies, and expected status codes with response payloads."
+  },
+  {
+    "title": "Login Issue",
+    "category": "Authentication",
+    "content": "User unable to login."
+  },
+  {
+    "title": "Login Issue",
+    "category": "Authentication",
+    "content": "User unable to login."
+  }
+]

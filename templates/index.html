@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Document360 - Knowledge Base Platform</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-primary: #1055ff;
+            --brand-primary-hover: #0c42cc;
+            --brand-dark: #0f172a;
+            --brand-surface: #f8fafc;
+            --card-border: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #475569;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--brand-surface);
+            color: var(--text-body);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header Navigation */
+        .navbar {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--card-border);
+            box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--brand-dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            background: linear-gradient(135deg, #1055ff 0%, #6366f1 100%);
+            color: #ffffff;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 14px rgba(16, 85, 255, 0.28);
+        }
+
+        .nav-link-custom {
+            color: #475569;
+            font-weight: 600;
+            font-size: 0.92rem;
+            padding: 0.5rem 0.9rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .nav-link-custom:hover, .nav-link-custom.active {
+            color: var(--brand-primary);
+            background-color: #eff6ff;
+        }
+
+        /* Buttons */
+        .btn-brand {
+            background-color: var(--brand-primary);
+            color: #ffffff;
+            font-weight: 600;
+            border-radius: 10px;
+            padding: 0.65rem 1.35rem;
+            transition: all 0.2s ease;
+            border: none;
+            box-shadow: 0 4px 12px rgba(16, 85, 255, 0.2);
+        }
+
+        .btn-brand:hover {
+            background-color: var(--brand-primary-hover);
+            color: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(16, 85, 255, 0.3);
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 14px 30px -10px rgba(15, 23, 42, 0.15);
+        }
+
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 380px;
+            height: 380px;
+            background: radial-gradient(circle, rgba(16, 85, 255, 0.35) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Metric Dashboard Cards */
+        .metric-card {
+            background: #ffffff;
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 1.5rem 1.75rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);
+            height: 100%;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.07);
+            border-color: #cbd5e1;
+        }
+
+        .metric-icon-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
+        /* Search Card */
+        .search-card {
+            background: #ffffff;
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 1rem;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+        }
+
+        .search-input-group .form-control {
+            border: none;
+            background: transparent;
+            font-size: 1.05rem;
+            padding: 0.75rem 1rem;
+            box-shadow: none !important;
+        }
+
+        .search-input-group .form-control:focus {
+            background: transparent;
+        }
+
+        /* Article Cards */
+        .article-card {
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            background: #ffffff;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
+        }
+
+        .article-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 35px rgba(15, 23, 42, 0.08);
+            border-color: #cbd5e1;
+        }
+
+        .badge-category {
+            background-color: #eff6ff;
+            color: var(--brand-primary);
+            font-weight: 700;
+            font-size: 0.78rem;
+            padding: 0.45em 0.85em;
+            border-radius: 8px;
+            border: 1px solid #dbeafe;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .badge-category:hover {
+            background-color: var(--brand-primary);
+            color: #ffffff;
+            border-color: var(--brand-primary);
+        }
+
+        .badge-category-filter {
+            background-color: #ffffff;
+            color: #475569;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.55em 1.1em;
+            border-radius: 10px;
+            border: 1px solid var(--card-border);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(15, 23, 42, 0.02);
+        }
+
+        .badge-category-filter:hover {
+            color: var(--brand-primary);
+            border-color: #93c5fd;
+            background-color: #eff6ff;
+            transform: translateY(-1px);
+        }
+
+        .badge-category-filter.active {
+            background-color: var(--brand-primary);
+            color: #ffffff;
+            border-color: var(--brand-primary);
+            box-shadow: 0 4px 12px rgba(16, 85, 255, 0.25);
+        }
+
+        .article-content {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            white-space: pre-line;
+        }
+
+        .empty-state {
+            background: #ffffff;
+            border: 2px dashed #cbd5e1;
+            border-radius: 20px;
+            padding: 4.5rem 2rem;
+            text-align: center;
+        }
+
+        footer {
+            margin-top: auto;
+            border-top: 1px solid var(--card-border);
+            background: #ffffff;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <span class="brand-icon">
+                    <i class="bi bi-journal-bookmark-fill"></i>
+                </span>
+                <span>Mini Document360</span>
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item">
+                        <a href="{{ url_for('index') }}" class="nav-link-custom active d-inline-flex align-items-center gap-2">
+                            <i class="bi bi-house-door-fill text-primary"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('add_article') }}" class="nav-link-custom d-inline-flex align-items-center gap-2">
+                            <i class="bi bi-plus-circle"></i> Add Article
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-2 pt-2 pt-lg-0">
+                    <a href="{{ url_for('add_article') }}" class="btn btn-brand btn-sm d-inline-flex align-items-center gap-2 px-3 py-2">
+                        <i class="bi bi-plus-lg"></i>
+                        <span>New Article</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="container my-4 my-md-5">
+        <!-- Flash Messages Banner -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category if category != 'error' else 'danger' }} alert-dismissible fade show d-flex align-items-center gap-2 mb-4 rounded-3 shadow-sm" role="alert">
+                        {% if category == 'success' %}
+                            <i class="bi bi-check-circle-fill flex-shrink-0 fs-5 text-success"></i>
+                        {% else %}
+                            <i class="bi bi-exclamation-triangle-fill flex-shrink-0 fs-5 text-danger"></i>
+                        {% endif %}
+                        <div>{{ message }}</div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Hero Section -->
+        <div class="hero-banner mb-4">
+            <div class="row align-items-center">
+                <div class="col-lg-9">
+                    <div class="d-inline-flex align-items-center gap-2 px-3 py-1 mb-3 rounded-pill bg-white bg-opacity-10 text-white fs-8">
+                        <i class="bi bi-stars text-warning"></i>
+                        <span>SaaS Knowledge Base Platform</span>
+                    </div>
+                    <h1 class="display-6 fw-bold mb-3">Mini Document360 Documentation</h1>
+                    <p class="lead text-light text-opacity-75 mb-4">
+                        Search, manage, and organize your team's standard operating procedures and technical documentation entries.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="{{ url_for('add_article') }}" class="btn btn-brand px-4 py-2">
+                            <i class="bi bi-file-earmark-plus me-1"></i> Create New Article
+                        </a>
+                        <a href="#articles-section" class="btn btn-outline-light px-4 py-2 border-opacity-25 rounded-3">
+                            <i class="bi bi-journal-text me-1"></i> Browse Articles
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Analytics Section (Displayed above search bar & article listing) -->
+        <div class="row g-4 mb-4">
+            <!-- Total Articles Metric Card -->
+            <div class="col-sm-6">
+                <div class="metric-card">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <span class="text-muted small fw-bold text-uppercase tracking-wider d-block mb-1">Total Articles</span>
+                            <h3 class="display-6 fw-extrabold text-dark mb-0">{{ total_articles|default(0) }}</h3>
+                        </div>
+                        <div class="metric-icon-box bg-primary-subtle text-primary">
+                            <i class="bi bi-file-earmark-text-fill"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total Categories Metric Card -->
+            <div class="col-sm-6">
+                <div class="metric-card">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <span class="text-muted small fw-bold text-uppercase tracking-wider d-block mb-1">Total Categories</span>
+                            <h3 class="display-6 fw-extrabold text-dark mb-0">{{ total_categories|default(0) }}</h3>
+                        </div>
+                        <div class="metric-icon-box bg-success-subtle text-success">
+                            <i class="bi bi-folder-fill"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Bar Section (Displayed below Dashboard Analytics) -->
+        <div class="search-card mb-5">
+            <form action="{{ url_for('search') }}" method="GET" class="mb-0">
+                <div class="input-group search-input-group align-items-center">
+                    <span class="ps-3 text-muted">
+                        <i class="bi bi-search fs-5"></i>
+                    </span>
+                    <input 
+                        type="text" 
+                        name="q" 
+                        class="form-control" 
+                        placeholder="Search articles by title, category, or content..." 
+                        value="{{ query|default('') }}"
+                        aria-label="Search articles"
+                    >
+                    {% if query %}
+                        <a href="{{ url_for('index') }}" class="btn btn-link text-secondary text-decoration-none px-3" title="Clear Search">
+                            <i class="bi bi-x-circle-fill fs-5"></i>
+                        </a>
+                    {% endif %}
+                    <button type="submit" class="btn btn-brand px-4 py-2">
+                        Search
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Category Filter Bar Section -->
+        {% if categories and categories|length > 0 %}
+            <div class="mb-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <span class="text-muted small fw-bold text-uppercase tracking-wider">Browse by Category</span>
+                    {% if active_category %}
+                        <a href="{{ url_for('index') }}" class="btn btn-link text-primary btn-sm text-decoration-none p-0">
+                            <i class="bi bi-x-circle me-1"></i> Clear Category Filter
+                        </a>
+                    {% endif %}
+                </div>
+                <div class="d-flex flex-wrap gap-2 align-items-center">
+                    <a href="{{ url_for('index') }}" 
+                       class="badge-category-filter {% if not active_category %}active{% endif %}">
+                        <i class="bi bi-grid-fill"></i> All Categories
+                    </a>
+                    
+                    {% for cat in categories %}
+                        <a href="{{ url_for('filter_by_category', category_name=cat) }}" 
+                           class="badge-category-filter {% if active_category and active_category.lower() == cat.lower() %}active{% endif %}">
+                            <i class="bi bi-tag-fill"></i> {{ cat }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+        <!-- Section Title & Counter -->
+        <div id="articles-section" class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="h4 fw-bold text-dark mb-1">
+                    {% if active_category %}
+                        Category: "<span class="text-primary">{{ active_category }}</span>"
+                    {% elif query %}
+                        Search Results for "<span class="text-primary">{{ query }}</span>"
+                    {% else %}
+                        Knowledge Articles
+                    {% endif %}
+                </h2>
+                <p class="text-muted small mb-0">
+                    {% if active_category %}
+                        Showing {{ articles|length }} article{% if articles|length != 1 %}s{% endif %} in {{ active_category }}
+                    {% elif query %}
+                        Found {{ articles|length }} matching article{% if articles|length != 1 %}s{% endif %}
+                    {% else %}
+                        Browse all documentation and standard operating procedures
+                    {% endif %}
+                </p>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                {% if active_category or query %}
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-secondary btn-sm rounded-pill">
+                        <i class="bi bi-x-lg"></i> Reset Filter
+                    </a>
+                {% endif %}
+                <span class="badge bg-secondary-subtle text-secondary px-3 py-2 rounded-pill fw-semibold">
+                    Showing: {{ articles|length }}
+                </span>
+            </div>
+        </div>
+
+        <!-- Articles Grid -->
+        {% if articles and articles|length > 0 %}
+            <div class="row g-4">
+                {% for article in articles %}
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card article-card p-4 shadow-sm">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <a href="{{ url_for('filter_by_category', category_name=article.category) }}" class="badge-category" title="Filter by {{ article.category }}">
+                                    <i class="bi bi-tag-fill"></i>
+                                    {{ article.category }}
+                                </a>
+                            </div>
+                            <h3 class="card-title h5 fw-bold text-dark mb-3">
+                                {{ article.title }}
+                            </h3>
+                            <div class="article-content card-text flex-grow-1">
+                                {{ article.content }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <!-- Empty State -->
+            <div class="empty-state">
+                <div class="mb-3 text-muted">
+                    <i class="bi bi-journal-text display-4"></i>
+                </div>
+                {% if query %}
+                    <h3 class="h5 fw-bold text-dark mb-2">No matching articles found.</h3>
+                    <p class="text-muted mb-4">We couldn't find any articles matching "<strong>{{ query }}</strong>". Try searching with different keywords.</p>
+                    <a href="{{ url_for('index') }}" class="btn btn-brand">
+                        <i class="bi bi-arrow-left me-1"></i> View All Articles
+                    </a>
+                {% else %}
+                    <h3 class="h5 fw-bold text-dark mb-2">No articles found</h3>
+                    <p class="text-muted mb-4">Get started by creating your very first article in the knowledge base.</p>
+                    <a href="{{ url_for('add_article') }}" class="btn btn-brand">
+                        <i class="bi bi-plus-lg me-1"></i> Add Your First Article
+                    </a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center mt-auto">
+        <div class="container">
+            <p class="mb-0 small">
+                Mini Document360 &copy; 2026 &bull; Built with Flask &amp; Bootstrap 5
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
